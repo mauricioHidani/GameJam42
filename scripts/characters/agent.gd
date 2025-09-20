@@ -1,12 +1,5 @@
 extends CharacterBody2D
 
-enum CharacterAnimState {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-};
-
 @export var speed: int = 100
 @export var target: Node = null
 @onready var navagent: NavigationAgent2D = $NavigationAgent2D
@@ -14,7 +7,6 @@ enum CharacterAnimState {
 @onready var head_anim: AnimatedSprite2D = $HeadAnimatedSprite2D
 
 var directions: Vector2
-var state: CharacterAnimState
 var moveAnim = CharacterAnimMove.new()
 
 func _physics_process(delta: float) -> void:
