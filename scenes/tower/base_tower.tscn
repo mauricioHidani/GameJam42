@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbd8sk4m7n02t"]
+
+[ext_resource type="Script" uid="uid://dutbmsb25i46y" path="res://scripts/Tower.gd" id="1_x88pq"]
+[ext_resource type="PackedScene" uid="uid://c0r6anfvaxplg" path="res://Tower/projetil.tscn" id="2_6qwgk"]
+[ext_resource type="Texture2D" uid="uid://chx0nhddg4uht" path="res://Tower/torre de arqueiros.png" id="3_ichhi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6qwgk"]
+radius = 300.326
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_x88pq")
+projectile_scene = ExtResource("2_6qwgk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_ichhi")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6qwgk")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://itfic6ocnl4d"]
+
+[ext_resource type="PackedScene" uid="uid://bre1jd0ikv1y3" path="res://Tower/ArcherTower.tscn" id="1_dd8gh"]
+[ext_resource type="PackedScene" uid="uid://cyjjdoaodef0c" path="res://Tower/enemy.tscn" id="2_dd8gh"]
+[ext_resource type="PackedScene" uid="uid://d3siiwl33vesg" path="res://Tower/warrior_towers.tscn" id="3_tvvv5"]
+
+[node name="Testes" type="Node2D"]
+
+[node name="ArcherTower" parent="." instance=ExtResource("1_dd8gh")]
+position = Vector2(1159, 129)
+
+[node name="Enemy" parent="." instance=ExtResource("2_dd8gh")]
+position = Vector2(459, 404)
+
+[node name="WarriorTowers" parent="." instance=ExtResource("3_tvvv5")]
+position = Vector2(73, 280)
+warrior_spawn_cooldown = 1.0

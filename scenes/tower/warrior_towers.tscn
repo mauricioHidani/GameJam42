@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3siiwl33vesg"]
+
+[ext_resource type="PackedScene" uid="uid://bbd8sk4m7n02t" path="res://Tower/base_tower.tscn" id="1_skvmd"]
+[ext_resource type="Script" uid="uid://bcbrj1owb2tc3" path="res://Tower/warrior_towers.gd" id="2_ps0i1"]
+[ext_resource type="PackedScene" uid="uid://cdyef7inh0me" path="res://Unit/warrior_unit.tscn" id="3_2qk7j"]
+
+[node name="WarriorTowers" instance=ExtResource("1_skvmd")]
+script = ExtResource("2_ps0i1")
+warrior_scene = ExtResource("3_2qk7j")
+warrior_count = 5
+warrior_spawn_cooldown = 3.0
+attack_range = 450.0
+projectile_scene = null

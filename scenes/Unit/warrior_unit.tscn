@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdyef7inh0me"]
+
+[ext_resource type="Script" uid="uid://dfhv8jndynplx" path="res://scripts/warrior_unit.gd" id="1_dsu3e"]
+[ext_resource type="Texture2D" uid="uid://bxhsrmi2hgtjv" path="res://Unit/Soldier/Soldier-Idle.png" id="2_y8xft"]
+
+[node name="WarriorUnit" type="CharacterBody2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_dsu3e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_y8xft")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
