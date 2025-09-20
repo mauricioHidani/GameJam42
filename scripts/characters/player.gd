@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var body_anim: AnimatedSprite2D = $BodyAnimatedSprite2D
 @onready var head_anim: AnimatedSprite2D = $HeadAnimatedSprite2D
 
-var speed = 180
+@export var speed = 180
 var directions: Vector2
 var moveAnim = CharacterAnimMove.new()
 
