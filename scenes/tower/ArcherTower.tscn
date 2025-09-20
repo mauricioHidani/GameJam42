@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bre1jd0ikv1y3"]
+
+[ext_resource type="PackedScene" uid="uid://bbd8sk4m7n02t" path="res://Tower/base_tower.tscn" id="1_jfeg7"]
+[ext_resource type="Script" uid="uid://bwrhskmqfpqdf" path="res://scripts/ArcherTower.gd" id="2_3w5tt"]
+
+[node name="ArcherTower" instance=ExtResource("1_jfeg7")]
+script = ExtResource("2_3w5tt")
+attack_range = 450.0

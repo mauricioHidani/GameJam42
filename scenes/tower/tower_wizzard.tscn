@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvboa4cc30c1h"]
+
+[ext_resource type="PackedScene" uid="uid://bbd8sk4m7n02t" path="res://Tower/base_tower.tscn" id="1_my2gc"]
+
+[node name="TowerWizzard" instance=ExtResource("1_my2gc")]
