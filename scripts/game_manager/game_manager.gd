@@ -3,10 +3,9 @@ extends Node
 @export var coins: int = 0
 @export var helth: int = 0
 @export var level: int = 1
-@export var troops: Array = []
-@export var troops_goals: Array = []
 
 var finance: FinanceGame = FinanceGame.new()
+var troopsManager: TroopManager = TroopManager.new()
 
 func buy_troops() -> void:
 	var cost: int = finance.calc_cost_troops(level)

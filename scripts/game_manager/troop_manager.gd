@@ -1,11 +1,18 @@
 extends Node
 
+class_name TroopManager
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var troops: Array = []
+@export var troops_goals: Array = []
 
+@export var troop_instance: PackedScene
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func create(goal: Node, level: int) -> void:
+	var troop: Troop = Troop.new()
+	troop.goal = goal
+	if level > 5:
+		troop.level += 1
+	troops.append(troop)
+
+func remove(troop: Troop) -> void:
+	troops.erase(troop)

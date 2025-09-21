@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
-@onready var body_anim: AnimatedSprite2D = $BodyAnimatedSprite2D
-@onready var head_anim: AnimatedSprite2D = $HeadAnimatedSprite2D
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
-@export var speed = 180
+@export var level: int = 1
+@export var health: int = 100
+@export var speed: float = 10
+
 var directions: Vector2
 var moveAnim = CharacterAnimMove.new()
 
@@ -14,7 +16,15 @@ func get_directions() -> void:
 
 func _process(delta: float) -> void:
 	get_directions()
-	moveAnim.walk(directions, head_anim, body_anim)
+	moveAnim.run(directions, anim)
 	if directions == Vector2.ZERO:
-		moveAnim.idle(head_anim, body_anim)
+		moveAnim.idle(anim)
 	move_and_slide()
+
+func die():
+	print("You die")
+
+func damage(value: int):
+	health -= value
+	if health <= 0:
+		die()

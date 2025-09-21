@@ -1,7 +1,13 @@
 extends CharacterBody2D
 
+class_name Troop
+
+@export var id: int = 0
 @export var speed: int = 100
-@export var target: Node = null
+@export var goal: Node = null
+@export var helth: int = 100
+@export var level: int = 1
+
 @onready var navagent: NavigationAgent2D = $NavigationAgent2D
 @onready var body_anim: AnimatedSprite2D = $BodyAnimatedSprite2D
 @onready var head_anim: AnimatedSprite2D = $HeadAnimatedSprite2D
@@ -18,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func go_to_target() -> void:
-	navagent.target_position = target.global_position
+	navagent.target_position = goal.global_position
 
 func _on_timer_timeout() -> void:
 	go_to_target()
