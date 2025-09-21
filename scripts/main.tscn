@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dmnmtvqmepdyv"]
 
 [ext_resource type="PackedScene" uid="uid://cpt3qiagnhrqy" path="res://maps/fullmap.tscn" id="1_0aq6d"]
-[ext_resource type="PackedScene" uid="uid://b4f5vsjul7pdr" path="res://scenes/characters/playerCharacter.tscn" id="1_hakmx"]
+[ext_resource type="PackedScene" uid="uid://u6ik7po717dq" path="res://scenes/characters/playerCharacter.tscn" id="1_hakmx"]
 [ext_resource type="PackedScene" uid="uid://dwr0njnmhdnp4" path="res://scenes/tower/tower_simple.tscn" id="3_irwmq"]
 [ext_resource type="PackedScene" uid="uid://byk6n2b085r7d" path="res://scenes/projectile/projectile.tscn" id="4_0nr8p"]
 
@@ -105,10 +105,19 @@ projectile_scene = ExtResource("4_0nr8p")
 position = Vector2(241, 338)
 
 [node name="tower_simple2" parent="." groups=["towers"] instance=ExtResource("3_irwmq")]
-position = Vector2(1171, 586)
+position = Vector2(910, 602)
 
 [node name="tower_simple3" parent="." groups=["playerCharacter", "towers"] instance=ExtResource("3_irwmq")]
-position = Vector2(1171, 135)
+position = Vector2(886, 127)
 
 [node name="tower_simple4" parent="." instance=ExtResource("3_irwmq")]
 position = Vector2(547, 135)
+
+[node name="tower_simple5" parent="." instance=ExtResource("3_irwmq")]
+position = Vector2(499, 590)
+
+[node name="tower_simple6" parent="." instance=ExtResource("3_irwmq")]
+position = Vector2(1218, 359)
+
+[node name="tower_simple7" parent="." instance=ExtResource("3_irwmq")]
+position = Vector2(1161, 573)

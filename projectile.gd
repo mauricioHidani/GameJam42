@@ -11,7 +11,7 @@ var direction = Vector2.ZERO # Direção em que o projétil se move (vetor norma
 func _ready():
 
 	# Conecta o sinal para detectar quando o projétil colide com algo
-	area_entered.connect(_on_area_entered)
+	body_entered.connect(_on_body_entered)
 	# === SISTEMA DE SEGURANÇA ===
 	# Auto-destruir após 5 segundos se não acertar nada
 	# Isso evita que projéteis fiquem voando para sempre pela cena
@@ -44,7 +44,7 @@ func _physics_process(delta):
 
 # === SISTEMA DE COLISÃO E DANO ===
 
-func _on_area_entered(area):
+func _on_body_entered(area):
 	# Chamado quando o projétil colide com algum corpo
 	print("detectado!")
 	
