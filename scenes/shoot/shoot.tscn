@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cklt8vb47nem1"]
+
+[ext_resource type="Texture2D" uid="uid://0m48rm375ww2" path="res://scenes/tower/flecha.png" id="1_actjj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2vd7"]
+size = Vector2(10, 10)
+
+[node name="Shoot" type="Area2D"]
+collision_layer = 16
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("1_actjj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d2vd7")
+debug_color = Color(1, 0.0140411, 0.00363984, 0.42)

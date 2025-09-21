@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0r6anfvaxplg"]
 
-[ext_resource type="Script" uid="uid://byu5l03gaagbt" path="res://scripts/projetil.gd" id="1_cvijb"]
-[ext_resource type="Texture2D" uid="uid://0m48rm375ww2" path="res://Tower/flecha.png" id="2_gtl0y"]
+[ext_resource type="Script" uid="uid://byu5l03gaagbt" path="res://scripts/towers/shoot.gd" id="1_cvijb"]
+[ext_resource type="Texture2D" uid="uid://0m48rm375ww2" path="res://scenes/tower/flecha.png" id="2_gtl0y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lvrup"]
 radius = 32.0
