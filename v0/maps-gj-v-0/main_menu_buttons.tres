@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://coff0umnngb1n"]
+
+[ext_resource type="FontFile" uid="uid://cxmy521x5vl5n" path="res://assets/img/Orbitron-VariableFont_wght.ttf" id="1_pxcr6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m8xq6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxcr6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vhfuj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8q8cj"]
+
+[resource]
+resource_local_to_scene = true
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_pxcr6")
+Button/styles/disabled = SubResource("StyleBoxEmpty_m8xq6")
+Button/styles/focus = SubResource("StyleBoxFlat_pxcr6")
+Button/styles/normal = SubResource("StyleBoxEmpty_vhfuj")
+Button/styles/pressed = SubResource("StyleBoxFlat_8q8cj")
