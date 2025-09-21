@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmnmtvqmepdyv"]
+
+[ext_resource type="PackedScene" uid="uid://cpt3qiagnhrqy" path="res://maps/fullmap.tscn" id="1_0aq6d"]
+[ext_resource type="PackedScene" uid="uid://cdf8i31vvxl54" path="res://scenes/characters/player_simple.tscn" id="2_0aq6d"]
+[ext_resource type="PackedScene" uid="uid://dwr0njnmhdnp4" path="res://scenes/tower/tower_simple.tscn" id="3_irwmq"]
+[ext_resource type="PackedScene" uid="uid://byk6n2b085r7d" path="res://scenes/projectile/projectile.tscn" id="4_0nr8p"]
+
+[sub_resource type="GDScript" id="GDScript_hakmx"]
+script/source = "extends Node
+
+# === CENAS PARA INSTANCIAR ===
+@export var player_scene: PackedScene     # Arraste sua cena do player aqui
+@export var projectile_scene: PackedScene # Arraste sua cena do projétil aqui
+
+# === VARIÁVEIS ===
+var player: Area2D = null
+var screen_size: Vector2
+
+func _ready():
+	# Pega o tamanho da tela
+	screen_size = get_viewport().get_visible_rect().size
+	
+	# Spawna o player
+	spawn_player()
+	
+	# Configura as torres que já estão na cena
+	setup_existing_towers()
+
+func spawn_player():
+	\"\"\"Spawna o player no centro da tela\"\"\"
+	if player_scene == null:
+		print(\"ERRO: Adicione a cena do player no campo player_scene!\")
+		return
+	
+	# Cria o player
+	player = player_scene.instantiate()
+	add_child(player)
+	
+	# Coloca no centro da tela
+	player.global_position = screen_size / 2
+	
+	# IMPORTANTE: Adiciona ao grupo para as torres detectarem
+	player.add_to_group(\"player_simple\")
+	
+	print(\"✅ Player spawnado no centro da tela\")
+
+func setup_existing_towers():
+	\"\"\"Configura as torres que já estão colocadas manualmente na cena\"\"\"
+	# Encontra todas as torres na cena
+	var towers = get_tree().get_nodes_in_group(\"enemy\")  # Adicione suas torres ao grupo \"towers\"
+	
+	if towers.is_empty():
+		print(\"ℹ️ Nenhuma torre encontrada. Adicione torres à cena e coloque no grupo 'towers'\")
+		return
+	
+	# Configura cada torre
+	for tower in towers:
+		if tower.has_method(\"set\") and projectile_scene != null:
+			tower.projectile_scene = projectile_scene
+			print(\"✅ Projétil configurado na torre: \" + tower.name)
+		else:
+			print(\"⚠️ Torre \" + tower.name + \" não pôde ser configurada\")
+	
+	print(\"✅ \" + str(towers.size()) + \" torres configuradas\")
+
+# === CONTROLES ===
+func _input(event):
+	# ENTER para reiniciar
+	if event.is_action_pressed(\"ui_accept\"):
+		restart_game()
+
+func restart_game():
+	\"\"\"Reinicia o jogo - só respawna o player\"\"\"
+	print(\"=== REINICIANDO JOGO ===\")
+	
+	# Remove player existente
+	if player != null and is_instance_valid(player):
+		player.queue_free()
+	
+	# Espera um frame e respawna o player
+	await get_tree().process_frame
+	spawn_player()
+	
+	# Reconfigura as torres (caso seja necessário)
+	setup_existing_towers()
+
+# === FUNÇÕES UTILITÁRIAS ===
+func get_player() -> Area2D:
+	\"\"\"Retorna a referência do player (útil para outros scripts)\"\"\"
+	return player
+
+func is_player_alive() -> bool:
+	\"\"\"Verifica se o player ainda existe\"\"\"
+	return player != null and is_instance_valid(player)
+"
+
+[node name="main" type="Node"]
+script = SubResource("GDScript_hakmx")
+player_scene = ExtResource("2_0aq6d")
+projectile_scene = ExtResource("4_0nr8p")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_0aq6d")]
+
+[node name="tower_simple" parent="." groups=["enemy"] instance=ExtResource("3_irwmq")]
+position = Vector2(241, 338)
+
+[node name="tower_simple2" parent="." groups=["towers"] instance=ExtResource("3_irwmq")]
+position = Vector2(1171, 586)
+
+[node name="tower_simple3" parent="." groups=["player_simple", "towers"] instance=ExtResource("3_irwmq")]
+position = Vector2(1171, 135)
+
+[node name="tower_simple4" parent="." instance=ExtResource("3_irwmq")]
+position = Vector2(547, 135)

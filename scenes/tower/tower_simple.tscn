@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwr0njnmhdnp4"]
+
+[ext_resource type="Script" uid="uid://bonmy7yy2y8qq" path="res://tower_simple.gd" id="1_8v4gb"]
+[ext_resource type="Texture2D" uid="uid://demom0f4stv1l" path="res://scenes/tower/inimigo.png" id="2_v4dtt"]
+[ext_resource type="PackedScene" uid="uid://byk6n2b085r7d" path="res://scenes/projectile/projectile.tscn" id="2_x3so4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8v4gb"]
+radius = 83.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v4dtt"]
+radius = 549.008
+
+[node name="tower_simple" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_8v4gb")
+projectile_scene = ExtResource("2_x3so4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+position = Vector2(0.5, 0)
+shape = SubResource("CircleShape2D_8v4gb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_v4dtt")
+
+[node name="Range" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_v4dtt")
+
+[connection signal="hit_tower" from="." to="." method="_on_hit_tower"]

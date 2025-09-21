@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://coxpfcn8ojrt1"]
+
+[ext_resource type="Script" uid="uid://d22g23dcn0e2y" path="res://projectile_fire.gd" id="1_wck1s"]
+[ext_resource type="Texture2D" uid="uid://c7o1maa1gij3l" path="res://scenes/tower/bolaDeFogo.png" id="2_b2fbr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k8ipt"]
+radius = 27.0185
+
+[node name="projectile_fire" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_wck1s")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_b2fbr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k8ipt")
