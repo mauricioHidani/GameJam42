@@ -48,7 +48,7 @@ func _on_area_entered(area):
 	# Chamado quando o projétil colide com algum corpo
 	print("detectado!")
 	
-	if area.is_in_group("player_simple"):  # Verifica se colidiu com o player
+	if area.is_in_group("playerCharacter"):  # Verifica se colidiu com o player
 		# === APLICAÇÃO DE DANO ===
 		# Emite o signal 'hit' do player com o valor de dano
 		# O player deve ter um signal chamado 'hit' definido

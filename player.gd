@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 signal hit(damage)
 
@@ -27,50 +27,56 @@ func _ready():
 	hit.connect(_on_hit)
 	current_health = max_health
 	shoot_cooldown = 1.0 / fire_rate
-	
+
 	$range.area_entered.connect(_on_enemy_enter)
 	$range.area_exited.connect(_on_enemy_exit)
+	
+	add_to_group("playerCharacter")
 
-	add_to_group("player_simple")
 
 func _process(delta):
-	handle_movement(delta)
-
 	if Input.is_action_just_pressed("fire"):
 		auto_fire_enabled = not auto_fire_enabled
-		print("🔁 Auto Fire: " + str(auto_fire_enabled if "Ativado" else "Desativado"))
+		print("🔁 Auto Fire: " + ("Ativado" if auto_fire_enabled else "Desativado"))
 
 	if auto_fire_enabled:
 		auto_shoot(delta)
 
+func _physics_process(delta):
+	handle_movement(delta)
+
 # === MOVIMENTO ===
 func handle_movement(delta):
-	var velocity = Vector2.ZERO
+	var input_vector = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
+		input_vector.x += 1
 	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
+		input_vector.x -= 1
 	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
+		input_vector.y += 1
 	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
+		input_vector.y -= 1
 
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+	if input_vector.length() > 0:
+		input_vector = input_vector.normalized()
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
 
-	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	velocity = input_vector * speed
+	move_and_slide()
 
-	if velocity.x != 0:
+	# Controle de animação
+	if input_vector.x != 0:
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_v = false
-		$AnimatedSprite2D.flip_h = velocity.x < 0
-	elif velocity.y != 0:
+		$AnimatedSprite2D.flip_h = input_vector.x < 0
+	elif input_vector.y != 0:
 		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_v = velocity.y > 0
+		$AnimatedSprite2D.flip_v = input_vector.y > 0
+
+	# Clamp na tela (opcional, depende da lógica do seu jogo)
+	global_position = global_position.clamp(Vector2.ZERO, screen_size)
 
 # === LIMPA INIMIGOS INVÁLIDOS ===
 func clean_nearby_enemies():

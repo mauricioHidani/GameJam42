@@ -33,7 +33,8 @@ func _process(delta):
 
 # === DETECÇÃO DE INIMIGOS ===
 func _on_range_area_entered(area):
-	if area.is_in_group("player_simple") and not enemies_in_range.has(area):
+	print("➡️ Entrou na área: ", area.name, " grupos: ", area.get_groups())
+	if area.is_in_group("playerCharacter") and not enemies_in_range.has(area):
 		enemies_in_range.append(area)
 		print("✅ Inimigo detectado: ", area.name)
 

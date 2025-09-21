@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dmnmtvqmepdyv"]
 
 [ext_resource type="PackedScene" uid="uid://cpt3qiagnhrqy" path="res://maps/fullmap.tscn" id="1_0aq6d"]
-[ext_resource type="PackedScene" uid="uid://cdf8i31vvxl54" path="res://scenes/characters/player_simple.tscn" id="2_0aq6d"]
+[ext_resource type="PackedScene" uid="uid://b4f5vsjul7pdr" path="res://scenes/characters/playerCharacter.tscn" id="1_hakmx"]
 [ext_resource type="PackedScene" uid="uid://dwr0njnmhdnp4" path="res://scenes/tower/tower_simple.tscn" id="3_irwmq"]
 [ext_resource type="PackedScene" uid="uid://byk6n2b085r7d" path="res://scenes/projectile/projectile.tscn" id="4_0nr8p"]
 
@@ -13,7 +13,7 @@ script/source = "extends Node
 @export var projectile_scene: PackedScene # Arraste sua cena do projétil aqui
 
 # === VARIÁVEIS ===
-var player: Area2D = null
+var player: CharacterBody2D = null
 var screen_size: Vector2
 
 func _ready():
@@ -40,7 +40,7 @@ func spawn_player():
 	player.global_position = screen_size / 2
 	
 	# IMPORTANTE: Adiciona ao grupo para as torres detectarem
-	player.add_to_group(\"player_simple\")
+	player.add_to_group(\"playerCharacter\")
 	
 	print(\"✅ Player spawnado no centro da tela\")
 
@@ -85,7 +85,7 @@ func restart_game():
 	setup_existing_towers()
 
 # === FUNÇÕES UTILITÁRIAS ===
-func get_player() -> Area2D:
+func get_player() -> CharacterBody2D:
 	\"\"\"Retorna a referência do player (útil para outros scripts)\"\"\"
 	return player
 
@@ -96,7 +96,7 @@ func is_player_alive() -> bool:
 
 [node name="main" type="Node"]
 script = SubResource("GDScript_hakmx")
-player_scene = ExtResource("2_0aq6d")
+player_scene = ExtResource("1_hakmx")
 projectile_scene = ExtResource("4_0nr8p")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_0aq6d")]
