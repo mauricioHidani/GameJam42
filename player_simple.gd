@@ -36,6 +36,10 @@ func _ready():
 func _process(delta):
 	handle_movement(delta)
 
+	if Input.is_action_just_pressed("fire"):
+		auto_fire_enabled = not auto_fire_enabled
+		print("🔁 Auto Fire: " + str(auto_fire_enabled if "Ativado" else "Desativado"))
+		
 	if auto_fire_enabled:
 		auto_shoot(delta)
 
