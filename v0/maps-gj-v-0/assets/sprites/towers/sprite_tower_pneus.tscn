@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b64av8mhia3be"]
+
+[ext_resource type="Texture2D" uid="uid://cfevlwdmahg7f" path="res://assets/img/pneu.png" id="1_4icpi"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3sf4h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3sf4h"]
+radius = 24.0
+
+[node name="Node2D" type="StaticBody2D"]
+light_mask = 24
+visibility_layer = 24
+collision_layer = 9
+collision_mask = 9
+physics_material_override = SubResource("PhysicsMaterial_3sf4h")
+
+[node name="Pneu" type="Sprite2D" parent="."]
+texture = ExtResource("1_4icpi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 24
+visibility_layer = 24
+shape = SubResource("CircleShape2D_3sf4h")

@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://bf07ndn7nhcen"]
+
+[ext_resource type="Texture2D" uid="uid://ddtslb8bxyoli" path="res://assets/img/Fire_01-Sheet.png" id="1_ooygv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oosdp"]
+atlas = ExtResource("1_ooygv")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr6h3"]
+atlas = ExtResource("1_ooygv")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kf61"]
+atlas = ExtResource("1_ooygv")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fen5"]
+atlas = ExtResource("1_ooygv")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o63cn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oosdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr6h3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kf61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fen5")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[node name="Fire01Sheet" type="Sprite2D"]
+texture = ExtResource("1_ooygv")
+hframes = 4
+region_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o63cn")
+animation = &"fire"
+autoplay = "fire"
