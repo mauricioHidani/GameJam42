@@ -94,7 +94,7 @@ func is_player_alive() -> bool:
 	return player != null and is_instance_valid(player)
 "
 
-[node name="main" type="Node"]
+[node name="main" type="Node" groups=["enemy", "playerCharacter"]]
 script = SubResource("GDScript_hakmx")
 player_scene = ExtResource("1_hakmx")
 projectile_scene = ExtResource("4_0nr8p")
@@ -107,7 +107,7 @@ position = Vector2(241, 338)
 [node name="tower_simple2" parent="." groups=["towers"] instance=ExtResource("3_irwmq")]
 position = Vector2(1171, 586)
 
-[node name="tower_simple3" parent="." groups=["player_simple", "towers"] instance=ExtResource("3_irwmq")]
+[node name="tower_simple3" parent="." groups=["playerCharacter", "towers"] instance=ExtResource("3_irwmq")]
 position = Vector2(1171, 135)
 
 [node name="tower_simple4" parent="." instance=ExtResource("3_irwmq")]

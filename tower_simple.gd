@@ -22,8 +22,8 @@ func _ready():
 		shape.radius = attack_range
 
 	# Conecta sinais de detecção de inimigos
-	$Range.area_entered.connect(_on_range_area_entered)
-	$Range.area_exited.connect(_on_range_area_exited)
+	$Range.body_entered.connect(_on_body_entered)
+	$Range.body_exited.connect(_on_body_exited)
 
 func _process(delta):
 	if can_attack and not enemies_in_range.is_empty():
@@ -32,15 +32,15 @@ func _process(delta):
 			attack(target)
 
 # === DETECÇÃO DE INIMIGOS ===
-func _on_range_area_entered(area):
-	print("➡️ Entrou na área: ", area.name, " grupos: ", area.get_groups())
-	if area.is_in_group("playerCharacter") and not enemies_in_range.has(area):
-		enemies_in_range.append(area)
-		print("✅ Inimigo detectado: ", area.name)
+func _on_body_entered(body):
+	print("➡️ Entrou na área: ", body.name, " grupos: ", body.get_groups())
+	if body.is_in_group("playerCharacter") and not enemies_in_range.has(body):
+		enemies_in_range.append(body)
+		print("✅ Inimigo detectado: ", body.name)
 
-func _on_range_area_exited(area):
-	if area in enemies_in_range:
-		enemies_in_range.erase(area)
+func _on_body_exited(body):
+	if body in enemies_in_range:
+		enemies_in_range.erase(body)
 
 # === SISTEMA DE ATAQUE ===
 func attack(target):
